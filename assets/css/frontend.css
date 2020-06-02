@@ -7,25 +7,27 @@
 }
 
 .currency-calculator-form-input input {
-    width: 100%;
+    width: 100px;
 }
 
 .currency-calculator-calculate {
-    text-align: right;
+    font-size: 18px;
 }
 
-.currency-calculator-result {
+.currency-calculator-output {
     margin-bottom: 30px;
 }
 
-.currency-calculator-result-title {
+.currency-calculator-output-title {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.currency-calculator-result span {
-    text-align: right;
-    display: block;
+.currency-calculator-output-number {
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
 }
 
 @media only screen and (min-width: 960px) {
@@ -34,7 +36,7 @@
         width: 48%;
     }
 
-    .currency-calculator-result {
+    .currency-calculator-output {
         float: right;
         width: 48%;
     }

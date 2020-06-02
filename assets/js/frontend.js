@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
         
         $.post(Currency_Calculator.ajaxurl, data, function(res){
             if (res.success) {
-                $('#currency-calculator-result').html(res.data.result);
+                $('#currency-calculator-output').html(res.data.output);
             } else {
                 console.log(res);
             }

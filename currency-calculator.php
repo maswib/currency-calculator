@@ -190,18 +190,18 @@ class Currency_Calculator {
         ) );
     }
     
-    private function get_exchange_rates( $base_currency ) {
+    private function get_exchange_rates() {
         $options = get_option( 'currency_calculator_options', $this->default_options );
         
         $api_url = add_query_arg( 
             array( 
                 'app_id' => $options['open_exchange_rates_app_id'] ,
-                'base'   => $base_currency
+                'base'   => 'USD'
             ), 
             $this->api_url . 'latest.json'
         );
         
-        $currency_rates = get_transient( 'currency_calculator_' . $base_currency );
+        $currency_rates = get_transient( 'currency_calculator_rates' );
         
         if ( $currency_rates ) {
             $rates = $currency_rates->rates;
@@ -211,7 +211,7 @@ class Currency_Calculator {
 
         if ( is_array( $response ) && ! is_wp_error( $response ) ) {
             $currency_rates = json_decode( $response['body'] );
-            set_transient( 'currency_calculator_' . $base_currency, $currency_rates, DAY_IN_SECONDS );
+            set_transient( 'currency_calculator_rates', $currency_rates, DAY_IN_SECONDS );
         }
         
         return $currency_rates->rates;
@@ -227,25 +227,22 @@ class Currency_Calculator {
         $output .= '<table>';
         $output .= sprintf( '<tr><td>%s</td><td><input type="number" min="0" id="currency-calculator-amount" value="1"></td></tr>', __( 'Amount', 'currency-calculator' ) );
         $output .= sprintf( '<tr><td>%s</td><td><select id="currency-calculator-from">', __( 'From', 'currency-calculator' ) );
-        $output .= sprintf( '<option value="USD">USD (United States Dollar)</option>' );
+        foreach ( $currencies as $symbol => $description ) {
+            $output .= sprintf( '<option value="%s"%s>%s (%s)</option>', $symbol, selected( 'USD', $symbol, false ), $symbol, $description );
+        }
         $output .= '</select></td></tr>';
         
         $output .= sprintf( '<tr><td>%s</td><td><select id="currency-calculator-to">', __( 'To', 'currency-calculator' ) );
-        
         foreach ( $currencies as $symbol => $description ) {
             $output .= sprintf( '<option value="%s"%s>%s (%s)</option>', $symbol, selected( 'IDR', $symbol, false ), $symbol, $description );
         }
-        
         $output .= '</select></td></tr>';
         
         $output .= '</table>';
         $output .= sprintf( '<div class="currency-calculator-calculate"><button id="currency-calculator-calculate-button">%s</button></div>', __( 'Calculate', 'currency-calculator' ) );
         $output .= '</div>';
         
-        $output .= '<div class="currency-calculator-result">';
-        $output .= sprintf( '<div class="currency-calculator-result-title">%s</div>', __( 'Result', 'currency-calculator' ) );
-        $output .= '<div id="currency-calculator-result"></div>';
-        $output .= '</div>';
+        $output .= '<div id="currency-calculator-output" class="currency-calculator-output"></div>';
         
         $output .= '</div>';
         
@@ -255,25 +252,36 @@ class Currency_Calculator {
     public function calculate() {
         check_ajax_referer( 'currency_calculator', 'nonce' );
         
-        $amount = floatval( $_POST['amount'] );
+        $amount = sanitize_text_field( $_POST['amount'] );
         $from   = sanitize_text_field( $_POST['from'] );
         $to     = sanitize_text_field( $_POST['to'] );
         
-        $currency_rates = $this->get_exchange_rates( $from );
+        $currency_rates = $this->get_exchange_rates();
         
-        $currency_rate = 0;
+        $currency_rate_from = 0;
+        $currency_rate_to = 0;
         
-        foreach ( $currency_rates as $symmbol => $rate ) {
-            if ( $to === $symmbol ) {
-                $currency_rate = $rate;
+        foreach ( $currency_rates as $symbol => $rate ) {
+            if ( $from === $symbol ) {
+                $currency_rate_from = $rate;
                 break;
             }
         }
         
-        $result = sprintf( '%f %s = %f %s', number_format( $amount, 2 ), $from, number_format( $amount * $currency_rate, 2 ), $to );
+        foreach ( $currency_rates as $symbol => $rate ) {
+            if ( $to === $symbol ) {
+                $currency_rate_to = $rate;
+                break;
+            }
+        }
+        
+        $result = $amount * $currency_rate_to / $currency_rate_from;
+        
+        $output = sprintf( '<div class="currency-calculator-output-title">%s</div>', __( 'Result', 'currency-calculator' ) );
+        $output .= sprintf( '<div class="currency-calculator-output-number">%s %s = %s %s</div>', number_format( $amount, 2 ), $from, number_format( $result, 2 ), $to );
         
         wp_send_json_success( array( 
-            'result' => $result
+            'output' => $output
         ) );
     }
 
