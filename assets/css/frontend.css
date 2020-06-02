@@ -1,0 +1,41 @@
+.currency-calculator-container {
+    overflow: hidden;
+}
+
+.currency-calculator-form-input {
+    margin-bottom: 30px;
+}
+
+.currency-calculator-form-input input {
+    width: 100%;
+}
+
+.currency-calculator-calculate {
+    text-align: right;
+}
+
+.currency-calculator-result {
+    margin-bottom: 30px;
+}
+
+.currency-calculator-result-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.currency-calculator-result span {
+    text-align: right;
+    display: block;
+}
+
+@media only screen and (min-width: 960px) {
+    .currency-calculator-form-input {
+        float: left;
+        width: 48%;
+    }
+
+    .currency-calculator-result {
+        float: right;
+        width: 48%;
+    }
+}
