@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Down Payment Calculator\n"
-"POT-Creation-Date: 2020-05-18 23:29+0700\n"
+"Project-Id-Version: Currency Calculator\n"
+"POT-Creation-Date: 2020-06-02 18:36+0700\n"
 "PO-Revision-Date: 2020-03-22 13:48+0700\n"
 "Last-Translator: \n"
 "Language-Team: Wahyu Wibowo <hello@wahyuwibowo.com>\n"
@@ -17,56 +17,61 @@ msgstr ""
 "_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
 "esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: down-payment-calculator.php\n"
+"X-Poedit-SearchPath-0: currency-calculator.php\n"
 
-#: down-payment-calculator.php:74
+#: currency-calculator.php:56 currency-calculator.php:91
+msgid "Currency Calculator Settings"
+msgstr ""
+
+#: currency-calculator.php:56
+msgid "Currency Calculator"
+msgstr ""
+
+#: currency-calculator.php:96
+msgid "Open Exchange Rates App ID"
+msgstr ""
+
+#: currency-calculator.php:104
+msgid "Save Changes"
+msgstr ""
+
+#: currency-calculator.php:108
+msgid "Currency List"
+msgstr ""
+
+#: currency-calculator.php:110
+msgid ""
+"This table displays the currency list supported by Open Exchange Rates."
+msgstr ""
+
+#: currency-calculator.php:130
+msgid "You have no currency"
+msgstr ""
+
+#: currency-calculator.php:139
+msgid "Update Currency List"
+msgstr ""
+
+#: currency-calculator.php:189
 msgid "Calculating..."
 msgstr ""
 
-#: down-payment-calculator.php:83
-msgid "Home Price ($)"
+#: currency-calculator.php:228
+msgid "Amount"
 msgstr ""
 
-#: down-payment-calculator.php:84
-msgid "Down Payment (%)"
+#: currency-calculator.php:229
+msgid "From"
 msgstr ""
 
-#: down-payment-calculator.php:85
-msgid "Closing Costs (%)"
+#: currency-calculator.php:235
+msgid "To"
 msgstr ""
 
-#: down-payment-calculator.php:86
-msgid "Interest Rate (%)"
-msgstr ""
-
-#: down-payment-calculator.php:87
-msgid "Loan Term (years)"
-msgstr ""
-
-#: down-payment-calculator.php:89
+#: currency-calculator.php:242
 msgid "Calculate"
 msgstr ""
 
-#: down-payment-calculator.php:93
+#: currency-calculator.php:280
 msgid "Result"
-msgstr ""
-
-#: down-payment-calculator.php:95
-msgid "Down Payment"
-msgstr ""
-
-#: down-payment-calculator.php:96
-msgid "Closing Costs"
-msgstr ""
-
-#: down-payment-calculator.php:97
-msgid "Upfront Costs = Down Payment + Closing Costs"
-msgstr ""
-
-#: down-payment-calculator.php:98
-msgid "Loan Amount"
-msgstr ""
-
-#: down-payment-calculator.php:99
-msgid "Monthly Payment"
 msgstr ""
