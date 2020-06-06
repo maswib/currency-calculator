@@ -5,7 +5,7 @@
  * Description: Calculate exchange rates between two currencies.
  * Author: Wahyu Wibowo
  * Author URI: https://wahyuwibowo.com
- * Version: 1.0
+ * Version: 1.0.1
  * Text Domain: currency-calculator
  * Domain Path: languages
  */
