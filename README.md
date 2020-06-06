@@ -4,7 +4,7 @@ WordPress plugin to help you calculate exchange rates between two currencies.
 
 ## Installation
 
-Simply download [the latest release](https://github.com/maswib/currency-calculator/releases/download/1.0/currency-calculator.zip) and upload the zip (currency-calculator.zip) under your WordPress dashboard at **Plugins > Add New**. Dont't forget to activate the plugin.
+Simply download [the latest release](https://github.com/maswib/currency-calculator/releases/download/1.0/currency-calculator.zip) and upload the zip file under your WordPress dashboard at **Plugins > Add New**. Don't forget to activate the plugin.
 
 ## Usage
 
